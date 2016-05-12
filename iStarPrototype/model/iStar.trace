@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trace:TraceModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:trace="http://www.eclipse.org/gmf/2006/Trace">
+  <nodeTraces
+      visualID="2011"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actor') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5021"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7005"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2012"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Agent') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5022"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7006"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2013"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Position') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5023"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7007"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2014"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Role') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5024"
+        queryText="true"/>
+    <compartmentTraces
+        visualID="7008"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2015"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Goal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5025"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2016"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Softgoal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5026"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2017"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Task') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5027"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2018"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Resource') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5028"
+        queryText="true"/>
+  </nodeTraces>
+  <nodeTraces
+      visualID="2019"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Belief') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISTAR') and _containmentMF_.name = 'hasNode')">
+    <nodeLabelTraces
+        visualID="5029"
+        queryText="true"/>
+  </nodeTraces>
+  <childNodeTraces
+      visualID="3006"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Goal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actors') and _containmentMF_.name = 'hasElement')">
+    <nodeLabelTraces
+        visualID="5016"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3007"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Softgoal') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actors') and _containmentMF_.name = 'hasElement')">
+    <nodeLabelTraces
+        visualID="5017"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3008"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Task') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actors') and _containmentMF_.name = 'hasElement')">
+    <nodeLabelTraces
+        visualID="5018"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3009"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Resource') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actors') and _containmentMF_.name = 'hasElement')">
+    <nodeLabelTraces
+        visualID="5019"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3010"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Belief') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Actors') and _containmentMF_.name = 'hasElement')">
+    <nodeLabelTraces
+        visualID="5020"
+        queryText="true"/>
+  </childNodeTraces>
+  <linkTraces
+      visualID="4019"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'ISA')">
+    <linkLabelTraces
+        visualID="6017"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4020"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'IsPartOf')">
+    <linkLabelTraces
+        visualID="6018"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4021"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Plays')">
+    <linkLabelTraces
+        visualID="6019"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4022"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Covers')">
+    <linkLabelTraces
+        visualID="6020"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4023"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Occupies')">
+    <linkLabelTraces
+        visualID="6021"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4024"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'INS')">
+    <linkLabelTraces
+        visualID="6022"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4025"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Make')">
+    <linkLabelTraces
+        visualID="6023"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4026"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Break')">
+    <linkLabelTraces
+        visualID="6024"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4027"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Help')">
+    <linkLabelTraces
+        visualID="6025"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4028"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Hurt')">
+    <linkLabelTraces
+        visualID="6026"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4029"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'SomePlus')">
+    <linkLabelTraces
+        visualID="6027"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4030"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'SomeMinus')">
+    <linkLabelTraces
+        visualID="6028"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4031"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'And')">
+    <linkLabelTraces
+        visualID="6029"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4032"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Or')">
+    <linkLabelTraces
+        visualID="6030"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4033"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'Unknown')">
+    <linkLabelTraces
+        visualID="6031"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4034"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'MeansEnd')"/>
+  <linkTraces
+      visualID="4035"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'DecompositionLink')"/>
+  <linkTraces
+      visualID="4036"
+      queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'is' and _eClass_.name = 'DependencyLink')">
+    <linkLabelTraces
+        visualID="6032"
+        queryText="true"/>
+  </linkTraces>
+</trace:TraceModel>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="istar">
+  <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="ISAFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="IsPartOfFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="PlaysFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="CoversFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OccupiesFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="INSFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="MakeFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="BreakFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="HelpFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="HurtFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="SomePlusFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="SomeMinusFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="AndFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="OrFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="UnknownFigureTargetDecoration"/>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="FilledClosedArrow">
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="ClosedArrow">
+      <backgroundColor xsi:type="gmfgraph:ConstantColor"/>
+      <template/>
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+      <template/>
+    </figures>
+    <figures xsi:type="gmfgraph:PolygonDecoration" name="Line">
+      <template x="-2" y="2"/>
+      <template x="-2" y="-2"/>
+    </figures>
+    <descriptors name="ActorFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="ActorFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="249" green="249" blue="249"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ActorLabelFigure" text="Actor">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="ActorHasElementCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureActorLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getActorHasElementCompartmentFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="AgentFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AgentFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="249" green="249" blue="249"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="AgentLabelFigure" text="Agent">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="AgentHasElementCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureAgentLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors accessor="getAgentHasElementCompartmentFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="PositionFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="PositionFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="249" green="249" blue="249"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="PositionLabelFigure" text="Position">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="PositionHasElementCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigurePositionLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors accessor="getPositionHasElementCompartmentFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="RoleFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="RoleFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="249" green="249" blue="249"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="RoleLabelFigure" text="Role">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="RoleHasElementCompartmentFigure" outline="false"/>
+      </actualFigure>
+      <accessors accessor="getFigureRoleLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+      <accessors accessor="getRoleHasElementCompartmentFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors name="GoalFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="GoalFigure">
+        <layout xsi:type="gmfgraph:GridLayout"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="184" green="219" blue="255"/>
+        <preferredSize dx="80" dy="40"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="GoalLabelFigure" text="Goal">
+          <layoutData xsi:type="gmfgraph:GridLayoutData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+        </children>
+        <template y="10"/>
+        <template y="20"/>
+        <template x="5" y="30"/>
+        <template x="15" y="30"/>
+        <template x="35" y="30"/>
+        <template x="45" y="30"/>
+        <template x="50" y="20"/>
+        <template x="50" y="10"/>
+        <template x="45"/>
+        <template x="35"/>
+        <template x="15"/>
+        <template x="5"/>
+      </actualFigure>
+      <accessors accessor="getFigureGoalLabelFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="SoftgoalFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="SoftgoalFigure">
+        <layout xsi:type="gmfgraph:GridLayout"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="206" green="255" blue="153"/>
+        <preferredSize dx="80" dy="40"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="SoftgoalLabelFigure" text="Softgoal">
+          <layoutData xsi:type="gmfgraph:GridLayoutData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+        </children>
+        <template y="10"/>
+        <template y="20"/>
+        <template x="5" y="30"/>
+        <template x="15" y="30"/>
+        <template x="25" y="25"/>
+        <template x="35" y="30"/>
+        <template x="45" y="30"/>
+        <template x="50" y="20"/>
+        <template x="50" y="10"/>
+        <template x="45"/>
+        <template x="35"/>
+        <template x="25" y="5"/>
+        <template x="15"/>
+        <template x="5"/>
+      </actualFigure>
+      <accessors accessor="getFigureSoftgoalLabelFigure" figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="TaskFigure">
+      <actualFigure xsi:type="gmfgraph:ScalablePolygon" name="TaskFigure">
+        <layout xsi:type="gmfgraph:GridLayout"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="227" blue="143"/>
+        <preferredSize dx="80" dy="40"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TaskLabelFigure" text="Task">
+          <layoutData xsi:type="gmfgraph:GridLayoutData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+        </children>
+        <template y="15"/>
+        <template x="10" y="30"/>
+        <template x="50" y="30"/>
+        <template x="60" y="15"/>
+        <template x="50"/>
+        <template x="10"/>
+      </actualFigure>
+      <accessors accessor="getFigureTaskLabelFigure" figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ResourceFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="ResourceFigure">
+        <layout xsi:type="gmfgraph:GridLayout"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="255" blue="179"/>
+        <preferredSize dx="80" dy="40"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ResourceLabelFigure" text="Resource">
+          <layoutData xsi:type="gmfgraph:GridLayoutData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureResourceLabelFigure" figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="BeliefFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="BeliefFigure">
+        <layout xsi:type="gmfgraph:GridLayout"/>
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="194" blue="173"/>
+        <preferredSize dx="80" dy="40"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="BeliefLabelFigure" text="Belief">
+          <layoutData xsi:type="gmfgraph:GridLayoutData" grabExcessHorizontalSpace="true" grabExcessVerticalSpace="true"/>
+        </children>
+      </actualFigure>
+      <accessors accessor="getFigureBeliefLabelFigure" figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors name="ISAFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="ISAFigure" targetDecoration="//@figures.0/@figures.0">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="ISALabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="ISALabelLabel" text="ISA"/>
+    </descriptors>
+    <descriptors name="IsPartOfFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="IsPartOfFigure" targetDecoration="//@figures.0/@figures.1">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="IsPartOfLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="IsPartOfLabelLabel" text="IsPartOf"/>
+    </descriptors>
+    <descriptors name="PlaysFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="PlaysFigure" targetDecoration="//@figures.0/@figures.2">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="PlaysLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="PlaysLabelLabel" text="Plays"/>
+    </descriptors>
+    <descriptors name="CoversFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="CoversFigure" targetDecoration="//@figures.0/@figures.3">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="CoversLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="CoversLabelLabel" text="Covers"/>
+    </descriptors>
+    <descriptors name="OccupiesFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OccupiesFigure" targetDecoration="//@figures.0/@figures.4">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="OccupiesLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="OccupiesLabelLabel" text="Occupies"/>
+    </descriptors>
+    <descriptors name="INSFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="INSFigure" targetDecoration="//@figures.0/@figures.5">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="INSLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="INSLabelLabel" text="INS"/>
+    </descriptors>
+    <descriptors name="MakeFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="MakeFigure" targetDecoration="//@figures.0/@figures.6">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="MakeLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="MakeLabelLabel" text="Make"/>
+    </descriptors>
+    <descriptors name="BreakFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="BreakFigure" targetDecoration="//@figures.0/@figures.7">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="BreakLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="BreakLabelLabel" text="Break"/>
+    </descriptors>
+    <descriptors name="HelpFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="HelpFigure" targetDecoration="//@figures.0/@figures.8">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="HelpLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="HelpLabelLabel" text="Help"/>
+    </descriptors>
+    <descriptors name="HurtFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="HurtFigure" targetDecoration="//@figures.0/@figures.9">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="HurtLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="HurtLabelLabel" text="Hurt"/>
+    </descriptors>
+    <descriptors name="SomePlusFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SomePlusFigure" targetDecoration="//@figures.0/@figures.10">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SomePlusLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="SomePlusLabelLabel" text="Some+"/>
+    </descriptors>
+    <descriptors name="SomeMinusFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="SomeMinusFigure" targetDecoration="//@figures.0/@figures.11">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="SomeMinusLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="SomeMinusLabelLabel" text="Some-"/>
+    </descriptors>
+    <descriptors name="AndFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="AndFigure" targetDecoration="//@figures.0/@figures.12">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="AndLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="AndLabelLabel" text="And"/>
+    </descriptors>
+    <descriptors name="OrFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="OrFigure" targetDecoration="//@figures.0/@figures.13">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="OrLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="OrLabelLabel" text="Or"/>
+    </descriptors>
+    <descriptors name="UnknownFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="UnknownFigure" targetDecoration="//@figures.0/@figures.14">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="UnknownLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="UnknownLabelLabel" text="Unknown"/>
+    </descriptors>
+    <descriptors name="MeansEndFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="MeansEndFigure" targetDecoration="//@figures.0/@figures.15">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DecompositionLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="DecompositionLinkFigure" sourceDecoration="//@figures.0/@figures.17">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DependencyLinkFigure">
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="DependencyLinkFigure" targetDecoration="//@figures.0/@figures.16">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors name="DependencyLinkLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="DependencyLinkLabelLabel" text="DependencyLink"/>
+    </descriptors>
+  </figures>
+  <nodes name="Actor" figure="ActorFigure"/>
+  <nodes name="Agent" figure="AgentFigure"/>
+  <nodes name="Position" figure="PositionFigure"/>
+  <nodes name="Role" figure="RoleFigure"/>
+  <nodes name="Goal" figure="GoalFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="40"/>
+    </facets>
+  </nodes>
+  <nodes name="Softgoal" figure="SoftgoalFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="40"/>
+    </facets>
+  </nodes>
+  <nodes name="Task" figure="TaskFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="40"/>
+    </facets>
+  </nodes>
+  <nodes name="Resource" figure="ResourceFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="40"/>
+    </facets>
+  </nodes>
+  <nodes name="Belief" figure="BeliefFigure">
+    <facets xsi:type="gmfgraph:DefaultSizeFacet">
+      <defaultSize dx="80" dy="40"/>
+    </facets>
+  </nodes>
+  <connections name="ISA" figure="ISAFigure"/>
+  <connections name="IsPartOf" figure="IsPartOfFigure"/>
+  <connections name="Plays" figure="PlaysFigure"/>
+  <connections name="Covers" figure="CoversFigure"/>
+  <connections name="Occupies" figure="OccupiesFigure"/>
+  <connections name="INS" figure="INSFigure"/>
+  <connections name="Make" figure="MakeFigure"/>
+  <connections name="Break" figure="BreakFigure"/>
+  <connections name="Help" figure="HelpFigure"/>
+  <connections name="Hurt" figure="HurtFigure"/>
+  <connections name="SomePlus" figure="SomePlusFigure"/>
+  <connections name="SomeMinus" figure="SomeMinusFigure"/>
+  <connections name="And" figure="AndFigure"/>
+  <connections name="Or" figure="OrFigure"/>
+  <connections name="Unknown" figure="UnknownFigure"/>
+  <connections name="MeansEnd" figure="MeansEndFigure"/>
+  <connections name="DecompositionLink" figure="DecompositionLinkFigure"/>
+  <connections name="DependencyLink" figure="DependencyLinkFigure"/>
+  <compartments name="ActorHasElementCompartment" figure="ActorFigure" collapsible="true" accessor="//@figures.0/@descriptors.0/@accessors.1"/>
+  <compartments name="AgentHasElementCompartment" figure="AgentFigure" collapsible="true" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
+  <compartments name="PositionHasElementCompartment" figure="PositionFigure" collapsible="true" accessor="//@figures.0/@descriptors.2/@accessors.1"/>
+  <compartments name="RoleHasElementCompartment" figure="RoleFigure" collapsible="true" accessor="//@figures.0/@descriptors.3/@accessors.1"/>
+  <labels name="ActorLabel" figure="ActorFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="AgentLabel" figure="AgentFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="PositionLabel" figure="PositionFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="RoleLabel" figure="RoleFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="GoalLabel" figure="GoalFigure" elementIcon="false" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels name="SoftgoalLabel" figure="SoftgoalFigure" elementIcon="false" accessor="//@figures.0/@descriptors.5/@accessors.0"/>
+  <labels name="TaskLabel" figure="TaskFigure" elementIcon="false" accessor="//@figures.0/@descriptors.6/@accessors.0"/>
+  <labels name="ResourceLabel" figure="ResourceFigure" elementIcon="false" accessor="//@figures.0/@descriptors.7/@accessors.0"/>
+  <labels name="BeliefLabel" figure="BeliefFigure" elementIcon="false" accessor="//@figures.0/@descriptors.8/@accessors.0"/>
+  <labels name="ISALabel" figure="ISALabelFigure" elementIcon="false"/>
+  <labels name="IsPartOfLabel" figure="IsPartOfLabelFigure" elementIcon="false"/>
+  <labels name="PlaysLabel" figure="PlaysLabelFigure" elementIcon="false"/>
+  <labels name="CoversLabel" figure="CoversLabelFigure" elementIcon="false"/>
+  <labels name="OccupiesLabel" figure="OccupiesLabelFigure" elementIcon="false"/>
+  <labels name="INSLabel" figure="INSLabelFigure" elementIcon="false"/>
+  <labels name="MakeLabel" figure="MakeLabelFigure" elementIcon="false"/>
+  <labels name="BreakLabel" figure="BreakLabelFigure" elementIcon="false"/>
+  <labels name="HelpLabel" figure="HelpLabelFigure" elementIcon="false"/>
+  <labels name="HurtLabel" figure="HurtLabelFigure" elementIcon="false"/>
+  <labels name="SomePlusLabel" figure="SomePlusLabelFigure" elementIcon="false"/>
+  <labels name="SomeMinusLabel" figure="SomeMinusLabelFigure" elementIcon="false"/>
+  <labels name="AndLabel" figure="AndLabelFigure" elementIcon="false"/>
+  <labels name="OrLabel" figure="OrLabelFigure" elementIcon="false"/>
+  <labels name="UnknownLabel" figure="UnknownLabelFigure" elementIcon="false"/>
+  <labels name="DependencyLinkLabel" figure="DependencyLinkLabelFigure" elementIcon="false"/>
+</gmfgraph:Canvas>

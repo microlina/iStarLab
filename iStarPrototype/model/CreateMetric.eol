@@ -1,0 +1,26 @@
+-- Create a new metric
+
+operation createMetric(name:String, description:String, key:String, 
+					   lowLimit:Real, highLimit:Real, body:String,
+					   element:EClass, container:GmfMap!MetricContainer) : 
+					   GmfMap!MetricRule {
+	
+	var metric := new GmfMap!MetricRule;
+	metric.name = name;
+	metric.description = description;
+	metric.key = key;
+	metric.lowLimit = lowLimit;
+	metric.highLimit = highLimit;
+	
+	var rule := new GmfMap!ValueExpression;
+	rule.body = body;
+	
+	var target := new GmfMap!DomainElementTarget;
+	target.element = element;
+	
+	metric.rule = rule;
+	metric.target = target;
+	metric.container = container;
+	
+	return metric;
+}

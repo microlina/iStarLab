@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+
+-->
+<plugin>
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="istar_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="istar_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="istar.diagram.part.IstarDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/IstarDiagramFile.gif"
+         extensions="istar_diagram"
+         default="true"
+         class="istar.diagram.part.IstarDiagramEditor"
+         matchingStrategy="istar.diagram.part.IstarMatchingStrategy"
+         contributorClass="istar.diagram.part.IstarDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="istar.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <wizard
+  	     name="%newWizardName"
+  	     icon="icons/obj16/IstarDiagramFile.gif"
+  	     category="org.eclipse.ui.Examples"
+  	     class="istar.diagram.part.IstarCreationWizard"
+  	     id="istar.diagram.part.IstarCreationWizardID">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <objectContribution
+            id="iStarPrototype.diagram.InitDiagram"
+            nameFilter="*.istar"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               label="%initDiagramActionLabel"
+               class="istar.diagram.part.IstarInitDiagramFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="iStarPrototype.diagram.InitDiagramAction">
+         </action>
+      </objectContribution>
+   </extension>
+	
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="IstarPresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="istar.diagram.part.IstarDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+         id="IstarPresentationPrint">
+         <Priority name="Lowest"/>
+         <ViewId id="istar.diagram.part.IstarDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="print"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
+         id="IstarPresentationIDE">
+         <Priority name="Lowest"/>
+         <ViewId id="istar.diagram.part.IstarDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="bookmark"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="IstarRender">
+         <Priority name="Lowest"/>
+         <ViewId id="istar.diagram.part.IstarDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.markerNavigationProviders" id="markers-navigation">
+      <?gmfgen generated="true"?>
+      <MarkerNavigationProvider class="istar.diagram.providers.IstarMarkerNavigationProvider">
+         <MarkerType name="iStarPrototype.diagram.diagnostic"/>
+         <Priority name="Lowest"/>
+      </MarkerNavigationProvider>
+   </extension>
+
+   <extension id="diagnostic" name="Istar Plugin problems" point="org.eclipse.core.resources.markers">
+      <?gmfgen generated="true"?>
+      <super type="org.eclipse.core.resources.problemmarker"/>
+      <super type="org.eclipse.gmf.runtime.common.ui.services.marker"/>
+      <persistent value="true"/>
+   </extension>   
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="istar.diagram.providers.IstarValidationDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="istar.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="iStarPrototype.diagram.general"
+            name="%prefpage.iStarPrototype.diagram.general"
+            class="istar.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="iStarPrototype.diagram.appearance"
+            name="%prefpage.iStarPrototype.diagram.appearance"
+            category="iStarPrototype.diagram.general"
+            class="istar.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="iStarPrototype.diagram.connections"
+            name="%prefpage.iStarPrototype.diagram.connections"
+            category="iStarPrototype.diagram.general"
+            class="istar.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="iStarPrototype.diagram.printing"
+            name="%prefpage.iStarPrototype.diagram.printing"
+            category="iStarPrototype.diagram.general"
+            class="istar.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="iStarPrototype.diagram.rulersAndGrid"
+            name="%prefpage.iStarPrototype.diagram.rulersAndGrid"
+            category="iStarPrototype.diagram.general"
+            class="istar.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="iStarPrototype.diagram"
+            labelProvider="istar.diagram.sheet.IstarSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="iStarPrototype.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="iStarPrototype.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="istar.diagram.sheet.IstarPropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+            <input type="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="istar.diagram.providers.IstarViewProvider">
+         <Priority name="Lowest"/>
+         <object id="referencing-diagrams" class="org.eclipse.gmf.runtime.notation.Diagram">
+            <method name="getType()" value="istar"/>
+         </object>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" containerViews="referencing-diagrams"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Istar"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2011,2012,2013,2014,2015,2016,2017,2018,2019,3006,3007,3008,3009,3010"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4019,4020,4021,4022,4023,4024,4025,4026,4027,4028,4029,4030,4031,4032,4033,4034,4035,4036"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="istar.diagram.providers.IstarEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Istar"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,2019,3006,3007,3008,3009,3010"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4019,4020,4021,4022,4023,4024,4025,4026,4027,4028,4029,4030,4031,4032,4033,4034,4035,4036"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5021,5022,5023,5024,5025,5026,5027,5028,5029,5016,5017,5018,5019,5020"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7005,7006,7007,7008"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfISTAREditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.ISTAREditPart" id="ISTAR_1000"/>
+         <context elements="ISTAR_1000"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfActorEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.ActorEditPart" id="Actor_2011"/>
+         <context elements="Actor_2011"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfAgentEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.AgentEditPart" id="Agent_2012"/>
+         <context elements="Agent_2012"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfPositionEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.PositionEditPart" id="Position_2013"/>
+         <context elements="Position_2013"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfRoleEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.RoleEditPart" id="Role_2014"/>
+         <context elements="Role_2014"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfGoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.GoalEditPart" id="Goal_2015"/>
+         <context elements="Goal_2015"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfSoftgoalEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.SoftgoalEditPart" id="Softgoal_2016"/>
+         <context elements="Softgoal_2016"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfTaskEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.TaskEditPart" id="Task_2017"/>
+         <context elements="Task_2017"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfResourceEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.ResourceEditPart" id="Resource_2018"/>
+         <context elements="Resource_2018"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfBeliefEditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.BeliefEditPart" id="Belief_2019"/>
+         <context elements="Belief_2019"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfGoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.Goal2EditPart" id="Goal_3006"/>
+         <context elements="Goal_3006"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfSoftgoal2EditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.Softgoal2EditPart" id="Softgoal_3007"/>
+         <context elements="Softgoal_3007"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfTask2EditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.Task2EditPart" id="Task_3008"/>
+         <context elements="Task_3008"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfResource2EditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.Resource2EditPart" id="Resource_3009"/>
+         <context elements="Resource_3009"/>
+      </modelingAssistantProvider>
+            <modelingAssistantProvider class="istar.diagram.providers.assistants.IstarModelingAssistantProviderOfBelief2EditPart">
+         <Priority name="Lowest"/>
+         <object class="istar.diagram.edit.parts.Belief2EditPart" id="Belief_3010"/>
+         <context elements="Belief_3010"/>
+      </modelingAssistantProvider>
+      
+   </extension>
+
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="istar.diagram.providers.IstarIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="istar.diagram.providers.IstarParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders" id="decorator-provider">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="istar.diagram.providers.IstarShortcutsDecoratorProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)" id="generated-top-nodes">
+            <method name="getType()" value="2011,2012,2013,2014,2015,2016,2017,2018,2019"/>
+         </object>
+         <context decoratorTargets="generated-top-nodes"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.ISTAR_1000"
+               name="%metatype.name.ISTAR_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ISTAR"
+               edithelper="istar.diagram.edit.helpers.ISTAREditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Actor_2011"
+               name="%metatype.name.Actor_2011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Actor"
+               edithelper="istar.diagram.edit.helpers.ActorEditHelper">
+            <param name="semanticHint" value="2011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Agent_2012"
+               name="%metatype.name.Agent_2012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Agent"
+               edithelper="istar.diagram.edit.helpers.AgentEditHelper">
+            <param name="semanticHint" value="2012"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Position_2013"
+               name="%metatype.name.Position_2013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Position"
+               edithelper="istar.diagram.edit.helpers.PositionEditHelper">
+            <param name="semanticHint" value="2013"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Role_2014"
+               name="%metatype.name.Role_2014"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Role"
+               edithelper="istar.diagram.edit.helpers.RoleEditHelper">
+            <param name="semanticHint" value="2014"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <specializationType
+               id="iStarPrototype.diagram.Goal_2015"
+               name="%metatype.name.Goal_2015"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="iStarPrototype.diagram.Goal_3006"/>
+            <param name="semanticHint" value="2015"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <specializationType
+               id="iStarPrototype.diagram.Softgoal_2016"
+               name="%metatype.name.Softgoal_2016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="iStarPrototype.diagram.Softgoal_3007"/>
+            <param name="semanticHint" value="2016"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <specializationType
+               id="iStarPrototype.diagram.Task_2017"
+               name="%metatype.name.Task_2017"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="iStarPrototype.diagram.Task_3008"/>
+            <param name="semanticHint" value="2017"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <specializationType
+               id="iStarPrototype.diagram.Resource_2018"
+               name="%metatype.name.Resource_2018"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="iStarPrototype.diagram.Resource_3009"/>
+            <param name="semanticHint" value="2018"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <specializationType
+               id="iStarPrototype.diagram.Belief_2019"
+               name="%metatype.name.Belief_2019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="iStarPrototype.diagram.Belief_3010"/>
+            <param name="semanticHint" value="2019"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Goal_3006"
+               name="%metatype.name.Goal_3006"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Goal"
+               edithelper="istar.diagram.edit.helpers.GoalEditHelper">
+            <param name="semanticHint" value="3006"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Softgoal_3007"
+               name="%metatype.name.Softgoal_3007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Softgoal"
+               edithelper="istar.diagram.edit.helpers.SoftgoalEditHelper">
+            <param name="semanticHint" value="3007"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Task_3008"
+               name="%metatype.name.Task_3008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Task"
+               edithelper="istar.diagram.edit.helpers.TaskEditHelper">
+            <param name="semanticHint" value="3008"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Resource_3009"
+               name="%metatype.name.Resource_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Resource"
+               edithelper="istar.diagram.edit.helpers.ResourceEditHelper">
+            <param name="semanticHint" value="3009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Belief_3010"
+               name="%metatype.name.Belief_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Belief"
+               edithelper="istar.diagram.edit.helpers.BeliefEditHelper">
+            <param name="semanticHint" value="3010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.ISA_4019"
+               name="%metatype.name.ISA_4019"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ISA"
+               edithelper="istar.diagram.edit.helpers.ISAEditHelper">
+            <param name="semanticHint" value="4019"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.IsPartOf_4020"
+               name="%metatype.name.IsPartOf_4020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="IsPartOf"
+               edithelper="istar.diagram.edit.helpers.IsPartOfEditHelper">
+            <param name="semanticHint" value="4020"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Plays_4021"
+               name="%metatype.name.Plays_4021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Plays"
+               edithelper="istar.diagram.edit.helpers.PlaysEditHelper">
+            <param name="semanticHint" value="4021"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Covers_4022"
+               name="%metatype.name.Covers_4022"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Covers"
+               edithelper="istar.diagram.edit.helpers.CoversEditHelper">
+            <param name="semanticHint" value="4022"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Occupies_4023"
+               name="%metatype.name.Occupies_4023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Occupies"
+               edithelper="istar.diagram.edit.helpers.OccupiesEditHelper">
+            <param name="semanticHint" value="4023"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.INS_4024"
+               name="%metatype.name.INS_4024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="INS"
+               edithelper="istar.diagram.edit.helpers.INSEditHelper">
+            <param name="semanticHint" value="4024"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Make_4025"
+               name="%metatype.name.Make_4025"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Make"
+               edithelper="istar.diagram.edit.helpers.MakeEditHelper">
+            <param name="semanticHint" value="4025"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Break_4026"
+               name="%metatype.name.Break_4026"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Break"
+               edithelper="istar.diagram.edit.helpers.BreakEditHelper">
+            <param name="semanticHint" value="4026"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Help_4027"
+               name="%metatype.name.Help_4027"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Help"
+               edithelper="istar.diagram.edit.helpers.HelpEditHelper">
+            <param name="semanticHint" value="4027"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Hurt_4028"
+               name="%metatype.name.Hurt_4028"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Hurt"
+               edithelper="istar.diagram.edit.helpers.HurtEditHelper">
+            <param name="semanticHint" value="4028"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.SomePlus_4029"
+               name="%metatype.name.SomePlus_4029"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SomePlus"
+               edithelper="istar.diagram.edit.helpers.SomePlusEditHelper">
+            <param name="semanticHint" value="4029"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.SomeMinus_4030"
+               name="%metatype.name.SomeMinus_4030"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="SomeMinus"
+               edithelper="istar.diagram.edit.helpers.SomeMinusEditHelper">
+            <param name="semanticHint" value="4030"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.And_4031"
+               name="%metatype.name.And_4031"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="And"
+               edithelper="istar.diagram.edit.helpers.AndEditHelper">
+            <param name="semanticHint" value="4031"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Or_4032"
+               name="%metatype.name.Or_4032"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Or"
+               edithelper="istar.diagram.edit.helpers.OrEditHelper">
+            <param name="semanticHint" value="4032"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.Unknown_4033"
+               name="%metatype.name.Unknown_4033"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Unknown"
+               edithelper="istar.diagram.edit.helpers.UnknownEditHelper">
+            <param name="semanticHint" value="4033"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.MeansEnd_4034"
+               name="%metatype.name.MeansEnd_4034"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MeansEnd"
+               edithelper="istar.diagram.edit.helpers.MeansEndEditHelper">
+            <param name="semanticHint" value="4034"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.DecompositionLink_4035"
+               name="%metatype.name.DecompositionLink_4035"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DecompositionLink"
+               edithelper="istar.diagram.edit.helpers.DecompositionLinkEditHelper">
+            <param name="semanticHint" value="4035"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="is">
+         <metamodelType
+               id="iStarPrototype.diagram.DependencyLink_4036"
+               name="%metatype.name.DependencyLink_4036"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DependencyLink"
+               edithelper="istar.diagram.edit.helpers.DependencyLinkEditHelper">
+            <param name="semanticHint" value="4036"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="iStarPrototype.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="iStarPrototype.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="iStarPrototype.diagram.TypeContext">
+         <elementType ref="iStarPrototype.diagram.ISTAR_1000"/>
+         <elementType ref="iStarPrototype.diagram.Actor_2011"/>
+         <elementType ref="iStarPrototype.diagram.Agent_2012"/>
+         <elementType ref="iStarPrototype.diagram.Position_2013"/>
+         <elementType ref="iStarPrototype.diagram.Role_2014"/>
+         <elementType ref="iStarPrototype.diagram.Goal_2015"/>
+         <elementType ref="iStarPrototype.diagram.Softgoal_2016"/>
+         <elementType ref="iStarPrototype.diagram.Task_2017"/>
+         <elementType ref="iStarPrototype.diagram.Resource_2018"/>
+         <elementType ref="iStarPrototype.diagram.Belief_2019"/>
+         <elementType ref="iStarPrototype.diagram.Goal_3006"/>
+         <elementType ref="iStarPrototype.diagram.Softgoal_3007"/>
+         <elementType ref="iStarPrototype.diagram.Task_3008"/>
+         <elementType ref="iStarPrototype.diagram.Resource_3009"/>
+         <elementType ref="iStarPrototype.diagram.Belief_3010"/>
+         <elementType ref="iStarPrototype.diagram.ISA_4019"/>
+         <elementType ref="iStarPrototype.diagram.IsPartOf_4020"/>
+         <elementType ref="iStarPrototype.diagram.Plays_4021"/>
+         <elementType ref="iStarPrototype.diagram.Covers_4022"/>
+         <elementType ref="iStarPrototype.diagram.Occupies_4023"/>
+         <elementType ref="iStarPrototype.diagram.INS_4024"/>
+         <elementType ref="iStarPrototype.diagram.Make_4025"/>
+         <elementType ref="iStarPrototype.diagram.Break_4026"/>
+         <elementType ref="iStarPrototype.diagram.Help_4027"/>
+         <elementType ref="iStarPrototype.diagram.Hurt_4028"/>
+         <elementType ref="iStarPrototype.diagram.SomePlus_4029"/>
+         <elementType ref="iStarPrototype.diagram.SomeMinus_4030"/>
+         <elementType ref="iStarPrototype.diagram.And_4031"/>
+         <elementType ref="iStarPrototype.diagram.Or_4032"/>
+         <elementType ref="iStarPrototype.diagram.Unknown_4033"/>
+         <elementType ref="iStarPrototype.diagram.MeansEnd_4034"/>
+         <elementType ref="iStarPrototype.diagram.DecompositionLink_4035"/>
+         <elementType ref="iStarPrototype.diagram.DependencyLink_4036"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="iStarPrototype.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="iStarPrototype.diagram"
+           properties="isURIEditorInput"
+           class="istar.diagram.part.IstarUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isShortcut">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="iStarPrototype.diagram.ShortcutPropertyTester"
+           type="org.eclipse.gmf.runtime.notation.View"
+           namespace="iStarPrototype.diagram"
+           properties="isShortcut"
+           class="istar.diagram.part.IstarShortcutPropertyTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.ui.navigator.viewer" id="navigator-viewbinding">
+      <?gmfgen generated="true"?>
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="iStarPrototype.diagram.resourceContent"/>
+			<contentExtension pattern="iStarPrototype.diagram.domainResourceContent"/>
+            <contentExtension pattern="iStarPrototype.diagram.navigatorLinkHelper"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <actionExtension pattern="iStarPrototype.diagram.navigatorActionProvider"/>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="iStarPrototype.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="istar.diagram.navigator.IstarNavigatorContentProvider" 
+            labelProvider="istar.diagram.navigator.IstarNavigatorLabelProvider"
+            icon="icons/obj16/IstarDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="istar_diagram"/>
+               </and>
+               <instanceof value="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="iStarPrototype.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="iStarPrototype.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="iStarPrototype.diagram.navigatorSorter" 
+               class="istar.diagram.navigator.IstarNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="istar_diagram"/>
+                  </and>
+                  <instanceof value="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+      </navigatorContent>
+      <navigatorContent
+            id="iStarPrototype.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="istar.diagram.navigator.IstarDomainNavigatorContentProvider" 
+            labelProvider="istar.diagram.navigator.IstarDomainNavigatorLabelProvider"
+            icon="icons/obj16/IstarDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="istar"/>
+               </and>
+               <instanceof value="istar.diagram.navigator.IstarDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="istar.diagram.navigator.IstarDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="iStarPrototype.diagram.navigatorActionProvider"
+            class="istar.diagram.navigator.IstarNavigatorActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+           	   <adapt type="org.eclipse.gmf.runtime.notation.View">
+           	      <test property="iStarPrototype.diagram.isShortcut"/>
+           	   </adapt>
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="iStarPrototype.diagram.navigatorLinkHelper"
+            class="istar.diagram.navigator.IstarNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="iStarPrototype.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="istar.diagram.navigator.IstarAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="istar.diagram.part.IstarDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="istar.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="istar.diagram.updateDiagram"
+         contextId="istar.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="iStarPrototype.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="istar.diagram.part.IstarDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="istar.diagram.edit.parts.ISTAREditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="istar.diagram.part.IstarDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="iStarPrototype.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="istar.diagram.part.IstarDiagramEditorID"
+         defaultHandler="istar.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+<extension id="metrics-view" point="org.eclipse.ui.views">
+      <?gmfgen generated="true"?>
+   	  <view class="istar.diagram.providers.IstarMetricProvider$ResultView"
+			id="istar.diagram.metricView"
+			name="Istar Diagram Metrics"/>
+   </extension>
+
+
+   <!-- optionally, specify keybindings -->
+</plugin>

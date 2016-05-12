@@ -1,0 +1,861 @@
+-- Creation of the palette and the metrics' container
+
+import 'CenterText.eol';
+import 'Polyline.eol';
+import 'CreateMetric.eol';
+
+
+-----------------------------------------------------------------------------
+--------------------------         PALETTE         --------------------------
+-----------------------------------------------------------------------------
+
+-- get gmfTool basics
+var palette := GmfTool!Palette.all.first();
+var currentTools := palette.tools;
+
+
+
+
+-- center text inside goals, figures, tasks, resources and beliefs
+var goal = findShape('GoalFigure');
+var softgoal = findShape('SoftgoalFigure');
+var task = findShape('TaskFigure');
+var resource = findShape('ResourceFigure');
+var belief = findShape('BeliefFigure');
+
+goal.layout = new GmfGraph!GridLayout;
+softgoal.layout = new GmfGraph!GridLayout;
+task.layout = new GmfGraph!GridLayout;
+resource.layout = new GmfGraph!GridLayout;
+belief.layout = new GmfGraph!GridLayout;
+
+var goalLabel = goal.children.first;
+var softgoalLabel = softgoal.children.first;
+var taskLabel = task.children.first;
+var resourceLabel = resource.children.first;
+var beliefLabel = belief.children.first;
+
+goalLabel.layoutData = new GmfGraph!GridLayoutData;
+goalLabel.layoutData.grabExcessVerticalSpace = true;
+goalLabel.layoutData.grabExcessHorizontalSpace = true;
+
+softgoalLabel.layoutData = new GmfGraph!GridLayoutData;
+softgoalLabel.layoutData.grabExcessVerticalSpace = true;
+softgoalLabel.layoutData.grabExcessHorizontalSpace = true;
+
+taskLabel.layoutData = new GmfGraph!GridLayoutData;
+taskLabel.layoutData.grabExcessVerticalSpace = true;
+taskLabel.layoutData.grabExcessHorizontalSpace = true;
+
+resourceLabel.layoutData = new GmfGraph!GridLayoutData;
+resourceLabel.layoutData.grabExcessVerticalSpace = true;
+resourceLabel.layoutData.grabExcessHorizontalSpace = true;
+
+beliefLabel.layoutData = new GmfGraph!GridLayoutData;
+beliefLabel.layoutData.grabExcessVerticalSpace = true;
+beliefLabel.layoutData.grabExcessHorizontalSpace = true;
+
+
+
+
+-- create actors group
+var actorsToolGroup := new GmfTool!ToolGroup;
+actorsToolGroup.title := 'Actors';
+actorsToolGroup.collapsible := true;
+palette.tools.remove(actorsToolGroup);
+palette.tools.add(0, actorsToolGroup);
+
+-- create elements group
+var elementsToolGroup := GmfTool!ToolGroup.all.selectOne(r|r.title = 'Objects');
+elementsToolGroup.title := 'Elements';
+elementsToolGroup.collapsible := true;
+palette.tools.remove(elementsToolGroup);
+palette.tools.add(1, elementsToolGroup);
+
+-- create associations group
+var associationsToolGroup := new GmfTool!ToolGroup;
+associationsToolGroup.title := 'Associations';
+associationsToolGroup.collapsible :=  true;
+palette.tools.remove(associationsToolGroup);
+palette.tools.add(2, associationsToolGroup);
+
+-- create contributions group
+var contributionsToolGroup := GmfTool!ToolGroup.all.selectOne(r|r.title = 'Connections');
+contributionsToolGroup.title := 'Contributions';
+contributionsToolGroup.collapsible := true;
+palette.tools.remove(contributionsToolGroup);
+palette.tools.add(3, contributionsToolGroup);
+
+-- create links group
+var linksToolGroup := new GmfTool!ToolGroup;
+linksToolGroup.title := 'Links';
+linksToolGroup.collapsible := true;
+palette.tools.remove(linksToolGroup);
+palette.tools.add(4, linksToolGroup);
+
+
+
+
+-- copy actors from elements tool group to actors tool group
+for(creationTool in
+	elementsToolGroup.tools.select(ct : GmfTool!CreationTool | 
+		ct.title == 'Actor'
+		or ct.title == 'Agent'
+		or ct.title == 'Position'
+		or ct.title == 'Role' )) {
+		actorsToolGroup.tools.add(creationTool);
+}
+
+-- copy associations from contributions tool group to associations tool group
+for(creationTool in
+	contributionsToolGroup.tools.select(ct : GmfTool!CreationTool |
+	ct.title == 'ISA'
+	or ct.title == 'IsPartOf'
+	or ct.title == 'Plays'
+	or ct.title == 'Covers'
+	or ct.title == 'Occupies'
+	or ct.title == 'INS')) {
+	associationsToolGroup.tools.add(creationTool);
+}
+
+-- copy decomposition link and mean-ends from constributions tool group to link tool group
+for(creationTool in
+	contributionsToolGroup.tools.select(ct : GmfTool!CreationTool |
+	ct.title == 'DecompositionLink'
+	or ct.title == 'MeansEnd'
+	or ct.title == 'DependencyLink')) {
+	--or ct.title == 'DependerLink'
+	--or ct.title == 'DependeeLink' 
+	--or ct.title == 'DepElemLink')) {
+	linksToolGroup.tools.add(creationTool);
+}
+
+
+
+
+-- create new polyline (for decomposition link)
+var polyline := new GmfGraph!PolygonDecoration;
+polyline.name := 'Line';
+polyline.template.add(createPoint(-2,2));
+polyline.template.add(createPoint(-2,-2));
+
+-- add the polyline to the figure figures' gallery
+var figureGallery := GmfGraph!FigureGallery.all.first();
+figureGallery.figures.add(polyline);
+
+-- add the polyline as a source decoration for decomposition links
+var polylineConnections := GmfGraph!PolylineConnection.all.select(pc : GmfGraph!PolylineConnection |
+	pc.name == 'DecompositionLinkFigure');
+	for(polylineConnection in polylineConnections) {
+		polylineConnection.sourceDecoration := polyline;
+	}
+
+
+
+
+-- change some names
+var toolEntry;
+
+toolEntry := contributionsToolGroup.tools.selectOne(r|r.title = 'SomePlus');
+toolEntry.title := 'Some+';
+contributionsToolGroup.tools.add(toolEntry);
+
+toolEntry := contributionsToolGroup.tools.selectOne(r|r.title = 'SomeMinus');
+toolEntry.title := 'Some-';
+contributionsToolGroup.tools.add(toolEntry);
+
+toolEntry := linksToolGroup.tools.selectOne(r|r.title = 'MeansEnd');
+toolEntry.title := 'Means-end';
+linksToolGroup.tools.add(toolEntry);
+
+toolEntry := linksToolGroup.tools.selectOne(r|r.title = 'DecompositionLink');
+toolEntry.title := 'Decomposition';
+linksToolGroup.tools.add(toolEntry);
+
+toolEntry := linksToolGroup.tools.selectOne(r|r.title = 'DependencyLink');
+toolEntry.title := 'Dependency';
+linksToolGroup.tools.add(toolEntry);
+
+
+
+
+
+
+-----------------------------------------------------------------------------
+--------------------------         METRICS         --------------------------
+-----------------------------------------------------------------------------
+
+-- metric rules
+var container := new GmfMap!MetricContainer;
+var istarElement := ECore!EClass.all.selectOne(c | c.name = 'ISTAR');
+
+---------------------------       COMPLEXITY       ---------------------------
+
+-- Complexity Q1
+createMetric('Number of Actors', 'total number of actors in the model', 'NAct', 
+			 0.0.asDouble(), null, 'self.NAct()', istarElement, container);
+			 
+createMetric('Number of Elements', 'total number of elements in the model',
+			 'NElem', 0.0.asDouble(), null, 'self.NElem()', istarElement,
+			 container);
+
+
+
+-- Complexity Q2
+createMetric('Number of Elements Inside Actors Boundaries', 'total number ' +
+			 'of elements inside all actors boundaries in the model', 'NEIAB',
+			 0.0.asDouble(), null, 'self.NEIAB()', istarElement, container);
+			 
+createMetric('Minimum Number of Elements Inside Actors Boundaries', 'mininum ' + 
+			 'number of elements inside actors boundaries in the model',
+			 'MinNEIAB', 0.0.asDouble(), null, 'self.MinNEIAB()', istarElement,
+			 container);
+			 
+createMetric('Maximum Number of Elements Inside Actors Boundaries', 'maximum ' + 
+			 'number of elements inside actors boundaries in the model',
+			 'MaxNEIAB', 0.0.asDouble(), null, 'self.MaxNEIAB()', istarElement,
+			 container);
+			 
+createMetric('Average Number of Elements Inside Actors Boundaries', 'average ' + 
+			 'number of elements inside actors boundaries in the model',
+			 'AvgNEIAB', 0.0.asDouble(), null, 'self.AvgNEIAB()', istarElement,
+			 container);
+			 
+			
+			 
+-- Complexity Q3
+createMetric('Number of Decompositions Associated with a Goal', 'total ' + 
+			 'number of decompositions associated with a goal inside all ' + 
+			 'actors boundaries in the model', 'NDAG', 0.0.asDouble(), null,
+			 'self.NDAG()', istarElement, container);
+			 
+createMetric('Minimum Number of Decompositions Associated with a Goal', 
+			 'minimum number of decompositions associated with a goal ' + 
+			 'inside an actors boundary in the model', 'MinNDAG', 
+			 0.0.asDouble(), null, 'self.MinNDAG()', istarElement, container);
+			 
+createMetric('Maximum Number of Decompositions Associated with a Goal', 
+			 'maximum number of decompositions associated with a goal' + 
+			 'inside an actors boundary in the model', 'MaxNDAG', 
+			 0.0.asDouble(), null, 'self.MaxNDAG()', istarElement, container);
+			 
+createMetric('Average Number of Decompositions Associated with a Goal', 
+			 'average of the number of decompositions associated with a ' + 
+			 'goal inside an actors boundary in the model', 'AvgNDAG',
+			 0.0.asDouble(), null, 'self.AvgNDAG()', istarElement, container);
+			 
+			 
+			 
+-- Complexity Q4
+createMetric('Number of Decompositions Associated with a Softgoal', 'total ' + 
+			 'number of decompositions associated with a softgoal inside all' + 
+			 'actors boundaries in the model', 'NDAS', 0.0.asDouble(), null,
+			 'self.NDAS()', istarElement, container);
+			 
+createMetric('Minimum Number of Decompositions Associated with a Softgoal', 
+			 'minimum number of decompositions associated with a softgoal ' + 
+			 'inside an actors boundary in the model', 'MinNDAS', 
+			 0.0.asDouble(), null, 'self.MinNDAS()', istarElement, container);
+			
+createMetric('Maximum Number of Decompositions Associated with a Softgoal', 
+			 'maximum number of decompositions associated with a softgoal ' + 
+			 'inside an actors boundary in the model', 'MaxNDAS',
+			 0.0.asDouble(), null, 'self.MaxNDAS()', istarElement, container);
+			 
+createMetric('Average Number of Decompositions Associated with a Softgoal', 
+			 'average of the number of decompositions associated with a ' + 
+			 'softgoal inside an actors boundary in the model', 'AvgNDAS', 
+			 0.0.asDouble(), null, 'self.AvgNDAS()', istarElement, container);
+			 
+			 
+			 
+-- Complexity Q5
+createMetric('Number of Decompositions Associated with a Task', 'total ' +
+		     'number of decompositions associated with a task inside all ' + 
+		     'actors boundaries in the model', 'NDAT', 0.0.asDouble(), null, 
+		     'self.NDAT()', istarElement, container);
+			 
+createMetric('Minimum Number of Decompositions Associated with a Task', 
+			 'minimum number of decompositions associated with a task ' +
+			 'inside an actors boundary in the model', 'MinNDAT', 
+			 0.0.asDouble(), null, 'self.MinNDAT()', istarElement, container);
+			 
+createMetric('Maximum Number of Decompositions Associated with a Task', 
+			 'maximum number of decompositions associated with a task ' + 
+			 'inside an actors boundary in the model', 'MaxNDAT', 
+			 0.0.asDouble(), null, 'self.MaxNDAT()', istarElement, container);
+			 
+createMetric('Average Number of Decompositions Associated with a Task', 
+			 'average of the number of decompositions associated with a ' + 
+			 'task inside an actors boundary in the model', 'AvgNDAT', 
+			 0.0.asDouble(), null, 'self.AvgNDAT()', istarElement, container);
+		
+		
+		
+-- Complexity Q6
+createMetric('Percentage of Outgoing Dependencies of Actors', 'percentage of ' +
+			 'outgoing dependencies of all actors in the model', 'PODA', 
+			 0.0.asDouble(), null, 'self.PODA()', istarElement, container);
+
+
+
+-- Complexity Q7
+createMetric('Percentage of Incoming Dependencies of Actors', 'percentage of ' +
+			 'incoming dependencies of all actors in the model', 'PIDA', 
+			 0.0.asDouble(), null, 'self.PIDA()', istarElement, container);
+
+
+
+-- Complexity Q8
+createMetric('Number of Elements Inside Actors Boundaries', 'total number ' +
+			 'of elements inside all actors boundaries', 'NEIActB', 
+			 0.0.asDouble(), null, 'self.NEIActB()', istarElement, container);
+			 
+createMetric('Number of Elements Inside Agents Boundaries', 'total number ' +
+			 'of elements inside all agents boundaries', 'NEIAgentB', 
+			 0.0.asDouble(), null, 'self.NEIAgentB()', istarElement, container);
+
+createMetric('Number of Elements Inside Positions Boundaries', 'total number '+
+			 'of elements inside all positions boundaries', 'NEIPosB', 
+			 0.0.asDouble(), null, 'self.NEIPosB()', istarElement, container);
+			 
+createMetric('Number of Elements Inside Roles Boundaries', 'total number ' +
+			 'of elements inside all roles boundaries', 'NEIRoleB', 
+			 0.0.asDouble(), null, 'self.NEIRoleB()', istarElement, container);
+
+
+
+
+
+
+
+
+		
+---------------------------      COMPLETENESS      ---------------------------
+-- Completeness Q1
+--createMetric('Percentage of Specific Actors', 'percentage of actors with a ' +
+--			 'specific type (agent, role ou position)', 'PSAct', 
+--			 0.0.asDouble(), null, 'self.PSAct()', istarElement, container);
+
+-- Completeness Q2
+--createMetric('Percentage of Goals With Decompositions', 'percentage of goals' +
+--			 'with decompositions in the model', 'PGWD', 0.0.asDouble(), null, 
+--			 'self.PGWD()', istarElement, container);
+
+-- Completeness Q3
+--createMetric('Percentage of Softgoals With Decompositions', 'percentage of ' +
+--			 'softgoals with decompositions in the model', 'PSWD', 
+--			 0.0.asDouble(), null, 'self.PSWD()', istarElement, container);
+
+-- Completeness Q4	 
+--createMetric('Percentage of Actors With Elements Inside ', 'percentage of ' +
+--			 'actors with elements inside their boundary', 'PAWEI', 
+--			 0.0.asDouble(), null, 'self.PAWEI()', istarElement, container);
+			 
+-- Completeness Q5
+--createMetric('Percentage of Unconnected Elements Inside Actors Boundaries ', 
+--			 'percentage of unconneted elements inside all actors boundaries',
+--			 'PUEIAB', 0.0.asDouble(), null, 'self.PUEIAB()', istarElement, 
+--			 container);
+			 
+--createMetric('Percentage of Actors With Unconnected Elements Inside', 
+--			 'percentage of actors with unconnected elements inside its ' + 
+--			 'boundary', 'PAWUEI', 0.0.asDouble(), null, 'self.PAWUEI()',
+--			 istarElement, container);
+			 
+--createMetric('Percentage of Actors WithOut Unconnected Elements Inside', 
+--			 'percentage of actors without unconnected elements inside its ' + 
+--			 'boundary', 'PAWOUEI', 0.0.asDouble(), null, 'self.PAWOUEI()',
+--			 istarElement, container);
+
+
+-- Completeness Q6
+--createMetric('Percentage of Actors With Dependencies', 'percentage of ' + 
+--			 'actors with decompositions', 'PAWD', 0.0.asDouble(), null, 
+--			 'self.PAWD()', istarElement, container);
+			 
+--createMetric('Percentage of Actors WithOut Dependencies', 'percentage of ' + 
+--			 'actors without decompositions', 'PAWOD', 0.0.asDouble(), null, 
+--			 'self.PAWOD()', istarElement, container);
+
+			 
+			
+			
+			
+			
+			 
+-----------------------------------------------------------------------------
+--------------------------    AUXILIARY METRICS    --------------------------
+-----------------------------------------------------------------------------
+var actorElement := ECore!EClass.all.selectOne(c | c.name = 'Actor');
+var agentElement := ECore!EClass.all.selectOne(c | c.name = 'Agent');
+var roleElement := ECore!EClass.all.selectOne(c | c.name = 'Role');
+var positionElement := ECore!EClass.all.selectOne(c | c.name = 'Position');
+
+var goalElement := ECore!EClass.all.selectOne(c | c.name = 'Goal');
+var softgoalElement := ECore!EClass.all.selectOne(c | c.name = 'Softgoal');
+var taskElement := ECore!EClass.all.selectOne(c | c.name = 'Task');
+var resourceElement := ECore!EClass.all.selectOne(c | c.name = 'Resource');
+var beliefElement := ECore!EClass.all.selectOne(c | c.name = 'Belief');
+
+
+
+---------------------------       COMPLEXITY       ---------------------------
+
+-- Complexity Q1, Q2
+createMetric('Number of Elements Outside Actors Boundaries', 'total number ' +
+			 'of elements inside all actors boundaries in the model', 'NEOAB',
+			 0.0.asDouble(), null, 'self.NEOAB()', istarElement, container);
+
+createMetric('Number of Elements Inside THIS Actor Boundary', 'number of ' + 
+			 'elements inside THIS actor boundary in the model', 'NEI',
+			 0.0.asDouble(), null, 'self.NEI()', actorElement, container);
+
+
+
+-- Complexity Q3
+createMetric('Number of Decompositions Associated with a Goal Inside THIS ' + 
+			 'Actor Boundary', 'total number of decompositions associated ' +
+			 'with a goal inside THIS actor boundary in the model', 'NDGI', 
+			 0.0.asDouble(), null, 'self.NDGI()', actorElement, container);
+
+createMetric('Minimum Number of Decompositions Associated with a Goal ' + 
+			 'Inside THIS Actor Boundary', 'minimum number of ' + 
+			 'decompositions associated with a goal inside THIS actor ' + 
+			 'boundary in the model', 'MinNDGI', 0.0.asDouble(), null,
+			 'self.MinNDGI()', actorElement, container);
+			 
+createMetric('Maximum Number of Decompositions Associated with a Goal ' + 
+			 'Inside THIS Actor Boundary', 'maximum number of ' + 
+			 'decompositions associated with a goal inside THIS actor ' + 
+			 'boundary in the model', 'MaxNDGI', 0.0.asDouble(), null, 
+			 'self.MaxNDGI()', actorElement, container);
+			 
+createMetric('Number of Goals With Decompositions', 'total number of goals ' +
+			 'with decompositions in the model', 'NGWD', 0.0.asDouble(), null,
+			 'self.NGWD()', istarElement, container);
+			 
+createMetric('Number of Goals With Decompositions Inside THIS Actor ' + 
+			 'Boundary', 'total number of goals with decompositions inside ' + 
+			 'THIS actor boundary', 'NGWDI', 0.0.asDouble(), null,
+			 'self.NGWDI()', actorElement, container);
+			 
+createMetric('Number of Decompositions of THIS Goal', 'total number of ' +
+			 'decompositions associated with THIS goal in the model', 'NDG',
+			 0.0.asDouble(), null, 'self.NDG()', goalElement, container);
+			 
+			 
+			 
+createMetric('Number of Goals Inside Actors Boundaries', 'total number of ' + 
+			 'goals inside all actors boundaries in the model', 'NGIAB',
+			 0.0.asDouble(), null, 'self.NGIAB()', istarElement, container);
+			 
+createMetric('Number of Goals Inside THIS Actor Boundary', 'number of goals ' +
+			 'inside THIS actor boundary in the model', 'NGI', 0.0.asDouble(),
+			 null, 'self.NGI()', actorElement, container);
+			 
+createMetric('Average Number of Decompositions Associated with a Goal ' + 
+			 'Inside THIS Actor Boundary', 'average number of ' + 
+			 'decompositions associated with a goal inside THIS actor ' + 
+			 'boundary in the model', 'AvgNDGI', 0.0.asDouble(), null, 
+			 'self.AvgNDGI()', actorElement, container);
+			 
+			 
+			 
+-- Complexity Q4
+createMetric('Number of Decompositions Associated with a Softgoal Inside ' + 
+			 'THIS Actor Boundary', 'total number of decompositions ' + 
+			 'associated with a softgoal inside THIS actor boundary in the '+ 
+			 'model', 'NDSI', 0.0.asDouble(), null, 'self.NDSI()', 
+			 actorElement, container);
+			 
+createMetric('Minimum Number of Decompositions Associated with a Softgoal ' + 
+			 'Inside THIS Actor Boundary', 'minimum number of ' + 
+			 'decompositions associated with a softgoal inside THIS actor ' +
+			 'boundary in the model', 'MinNDSI', 0.0.asDouble(), null, 
+			 'self.MinNDSI()', actorElement, container);
+			 
+createMetric('Maximum Number of Decompositions Associated with a Softgoal ' +
+			 'Inside THIS Actor Boundary', 'maximum number of ' + 
+			 'decompositions associated with a softgoal inside THIS actor ' + 
+			 'boundary in the model', 'MaxNDSI', 0.0.asDouble(), null, 
+			 'self.MaxNDSI()', actorElement, container);
+			 
+createMetric('Number of Softgoals With Decompositions', 'total number of ' + 
+			 'softgoals with decompositions in the model', 'NSWD', 
+			 0.0.asDouble(), null,'self.NSWD()', istarElement, container);
+			 
+createMetric('Number of Softgoals With Decompositions Inside THIS Actor ' + 
+			 'Boundary', 'total number of softgoals with decompositions ' + 
+			 'inside THIS actor boundary', 'NSWDI', 0.0.asDouble(), null, 
+			 'self.NSWDI()', actorElement, container);
+			 
+createMetric('Number of Decompositions of THIS Softgoal', 'total number of ' +
+			 'decompositions associated with THIS softgoal in the model', 'NDS',
+			 0.0.asDouble(), null, 'self.NDS()', softgoalElement, container);
+
+
+createMetric('Number of Softgoals Inside Actor Boundary', 'total number of ' + 
+			 'softgoals inside all actors boundaries in the model', 'NSIAB', 
+			 0.0.asDouble(), null, 'self.NSIAB()', istarElement, container);
+
+createMetric('Number of Softgoals Inside THIS Actor Boundary', 'number of ' + 
+			 'softgoals inside THIS actor boundary in the model', 'NSI', 
+			 0.0.asDouble(), null, 'self.NSI()', actorElement, container);
+			 
+createMetric('Average Number of Decompositions Associated with a Softgoal ' +
+			 'Inside THIS Actor Boundary', 'average number of ' + 
+			 'decompositions associated with a softgoal inside THIS actor ' + 
+			 'boundary in the model', 'AvgNDSI', 0.0.asDouble(), null, 
+			 'self.AvgNDSI()', actorElement, container);
+			 
+
+
+-- Complexity Q5
+createMetric('Number of Decompositions Associated with a Task Inside THIS ' +
+			 'Actor Boundary', 'total number of decompositions associated ' +
+			 'with a task inside THIS actor boundary in the model', 'NDTI', 
+			 0.0.asDouble(), null, 'self.NDTI()', actorElement, container);
+			 
+createMetric('Minimum Number of Decompositions Associated with a Task ' + 
+			 'Inside THIS Actor Boundary', 'minimum number of ' + 
+			 'decompositions associated with a task inside THIS actor ' + 
+			 'boundary in the model', 'MinNDTI', 0.0.asDouble(), null, 
+			 'self.MinNDTI()', actorElement, container);
+			 
+createMetric('Maximum Number of Decompositions Associated with a Task Inside' +
+			 'THIS Actor Boundary', 'maximum number of decompositions ' + 
+			 'associated with a task inside THIS actor boundary in the model',
+			 'MaxNDTI', 0.0.asDouble(), null, 'self.MaxNDTI()', actorElement, 
+			 container);
+			 
+createMetric('Number of Tasks With Decompositions', 'total number of tasks ' +
+			 'with decompositions in the model', 'NTWD', 0.0.asDouble(), null,
+			 'self.NTWD()', istarElement, container);
+			 
+createMetric('Number of Tasks With Decompositions Inside THIS Actor Boundary',
+			 'total number of tasks with decompositions inside THIS actor ' + 
+			 'boundary', 'NTWDI', 0.0.asDouble(), null, 'self.NTWDI()', 
+			 actorElement, container);
+			 
+createMetric('Number of Decompositions of THIS Task', 'total number of ' +
+			 'decompositions associated with THIS task in the model', 'NDT',
+			 0.0.asDouble(), null, 'self.NDT()', taskElement, container);
+
+
+createMetric('Number of Tasks Inside Actor Boundary', 'total number of ' +
+			 'tasks inside all actors boundaries in the model', 'NTIAB', 
+			 0.0.asDouble(), null, 'self.NTIAB()', istarElement, container);
+
+createMetric('Number of Tasks Inside THIS Actor Boundary', 'number of ' + 
+			 'tasks inside THIS actor boundary in the model', 'NTI', 
+			 0.0.asDouble(), null, 'self.NTI()', actorElement, container);
+		 
+createMetric('Average Number of Decompositions Associated with a Task ' + 
+			 'Inside THIS Actor Boundary', 'average number of ' + 
+			 'decompositions associated with a task inside THIS actor ' + 
+			 'boundary in the model', 'AvgNDTI', 0.0.asDouble(), null, 
+			 'self.AvgNDTI()', actorElement, container);
+			 
+
+
+-- Complexity Q6, Q7
+createMetric('Number of Outgoing Dependencies of Actors', 'total number ' +
+			 'of outgoing dependencies of all actors', 'NODA', 
+			 0.0.asDouble(), null, 'self.NODA()', istarElement, container);
+
+createMetric('Number of Dependencies of Actors', 'total number of  ' + 
+			'dependencies of all actors', 'NDA', 0.0.asDouble(), null, 
+			'self.NDA()', istarElement, container);
+			
+createMetric('Number of Incoming Dependencies of Actors', 'total number ' +
+			 'of incoming dependencies of all actors', 'NIDA', 
+			 0.0.asDouble(), null, 'self.NIDA()', istarElement, container);
+			 
+createMetric('Number of Outgoing Dependencies', 'number of outgoing ' +
+			 'dependencies of an actor', 'NOD', 0.0.asDouble(), null, 
+			 'self.NOD()', actorElement, container);
+			 
+createMetric('Number of Incoming Dependencies', 'number of incoming ' +
+			 'dependencies of an actor', 'NID', 
+			 0.0.asDouble(), null, 'self.NID()', actorElement, container);
+			 
+			 
+			 
+-- Complexity Q8
+createMetric('Number of Elements Inside THIS Agent Boundary', 'number ' +
+			 'of elements inside THIS agent boundary', 'NEIA', 
+			 0.0.asDouble(), null, 'self.NEIA()', agentElement, container);
+			 
+createMetric('Number of Elements Inside THIS Position Boundary', 'number ' +
+			 'of elements inside THIS position boundary', 'NEIP',
+			 0.0.asDouble(), null, 'self.NEIP()', positionElement, container);
+			 
+createMetric('Number of Elements Inside THIS Role Boundary', 'number ' +
+			 'of elements inside THIS role boundary', 'NEIR', 0.0.asDouble(), 
+			 null, 'self.NEIR()', roleElement, container);
+
+
+
+--createMetric('Number of Outgoing Dependencies', 'number of outgoing ' +
+--			 'dependencies in the model', 'NOD', 0.0.asDouble(), null,
+--			 'self.NOD()', istarElement, container);
+
+--createMetric('Number of Incoming Dependencies', 'number of incoming ' +
+--			 'dependencies in the model', 'NID', 0.0.asDouble(), null,
+--			 'self.NID()', istarElement, container);
+
+
+--createMetric('Number of Incoming Dependencies', 'number of incoming ' +
+--			 'dependencies of an actor', 'NID', 
+--			 0.0.asDouble(), null, 'self.NID()', actorElement, container);
+			 
+--createMetric('Percentage of Incoming Dependencies', 'percentage of incoming ' +
+--			 'dependencies of an actor', 'PID', 
+--			 0.0.asDouble(), null, 'self.PID()', actorElement, container);
+		
+			 
+-- Complexity Q7
+
+
+			 
+--createMetric('Percentage of Outgoing Dependencies', 'percentage of outgoing ' +
+--			 'dependencies of an actor', 'POD', 
+--			 0.0.asDouble(), null, 'self.POD()', actorElement, container);
+			 
+			 
+--createMetric('Number of Dependencies', 'total number of dependencies of an ' + 
+--			'actor', 'ND', 0.0.asDouble(), null, 'self.ND()', actorElement, 
+--			container);
+			
+			
+--createMetric('Number of Incoming Dependencies of a Softgoal', 'number of ' + 
+--			 'incoming dependencies of an softgoal', 'NIDS', 0.0.asDouble(), 
+--			 null, 'self.NIDS()', softgoalElement, container);
+			
+--createMetric('Number of Incoming Dependencies of a Goal', 'number of ' + 
+--			 'incoming dependencies of a goal', 'NIDG', 0.0.asDouble(), null, 
+--			 'self.NIDG()', goalElement, container);	
+			 
+--createMetric('Number of Incoming Dependencies of a Task', 'number of ' + 
+--			 'incoming dependencies of a task', 'NIDT', 0.0.asDouble(), null, 
+--			 'self.NIDT()', taskElement, container);
+			 
+--createMetric('Number of Incoming Dependencies of a Resource', 'number of ' + 
+--			 'incoming dependencies of a resource', 'NIDR', 0.0.asDouble(), 
+--			 null, 'self.NIDR()', resourceElement, container);
+			 
+--createMetric('Number of Incoming Dependencies of a Belief', 'number of ' + 
+--			 'incoming dependencies of a resource', 'NIDB', 0.0.asDouble(), 
+--			 null, 'self.NIDB()', beliefElement, container);
+			 
+			 
+			 
+			 
+--createMetric('Number of Outgoing Dependencies of a Softgoal', 'number of ' + 
+--			 'outgoing dependencies of a softgoal', 'NODS', 0.0.asDouble(), 
+--			 null, 'self.NODS()', softgoalElement, container);
+			 
+--createMetric('Number of Outgoing Dependencies of a Goal', 'number of ' + 
+--			 'outgoing dependencies of a goal', 'NODG', 0.0.asDouble(), null, 
+--			 'self.NODG()', goalElement, container);
+			 
+--createMetric('Number of Outgoing Dependencies of a Task', 'number of ' + 
+--			 'outgoing dependencies of a task', 'NODT', 0.0.asDouble(), null, 
+--			 'self.NODT()', taskElement, container);
+			 
+--createMetric('Number of Outgoing Dependencies of a Resource', 'number of ' + 
+--			 'outgoing dependencies of a resource', 'NODR', 0.0.asDouble(),
+--			 null, 'self.NODR()', resourceElement, container);
+			 			 
+--createMetric('Number of Outgoing Dependencies of a Belief', 'number of ' + 
+--			 'outgoing dependencies of a belief', 'NODB', 0.0.asDouble(),
+--			 null, 'self.NODB()', beliefElement, container);
+			 
+			 
+	
+	
+	
+--createMetric('Number of Dependencies of a Belief', 'total number of ' + 
+--			 'dependencies of a softgoal', 'NDepS', 0.0.asDouble(),
+--			 null, 'self.NDepS()', softgoalElement, container);	
+			 
+--createMetric('Number of Dependencies of a Goal', 'total number of ' + 
+--			 'dependencies of a goal', 'NDepG', 0.0.asDouble(), null, 
+--			 'self.NDepG()', goalElement, container);	
+			 	 
+--createMetric('Number of Dependencies of a Task', 'total number of ' + 
+--			 'dependencies of a task', 'NDepT', 0.0.asDouble(), null, 
+--			 'self.NDepT()', taskElement, container);	
+			 
+--createMetric('Number of Dependencies of a Resource', 'total number of ' + 
+--			 'dependencies of a resource', 'NDepR', 0.0.asDouble(), null, 
+--			 'self.NDepR()', resourceElement, container);	
+
+--createMetric('Number of Dependencies of a Belief', 'total number of ' + 
+--			 'dependencies of a belief', 'NDepB', 0.0.asDouble(), null, 
+--			 'self.NDepB()', beliefElement, container);	
+	
+
+
+
+
+
+
+			 
+
+			 
+
+			 
+--createMetric('Number of Actors in the Model', 'total number of actors in the' +
+--			 'model', 'NActors', 0.0.asDouble(), null, 'self.NActors()', 
+--			 istarElement, container);	 
+			 
+--createMetric('Number of Agents in the Model', 'total number of agents in the' +
+--			 'model', 'NAgents', 0.0.asDouble(), null, 'self.NAgents()', 
+--			 istarElement, container);	
+			 
+--createMetric('Number of Roles in the Model', 'total number of roles in the' +
+--			 'model', 'NRoles', 0.0.asDouble(), null, 'self.NRoles()', 
+--			 istarElement, container);
+			 
+--createMetric('Number of Positions in the Model', 'total number of positions ' +
+--			 'in the model', 'NPos', 0.0.asDouble(), null, 'self.NPos()', 
+--			 istarElement, container);	
+			 
+--createMetric('Percentage of Tasks With Decompositions', 'percentage of ' +
+--			 'tasks with decompositions in the model', 'PTWD', 
+--			 0.0.asDouble(), null, 'self.PTWD()', istarElement, container);
+			 
+--createMetric('Number of Actors With Elements Inside ', 'total number of ' +
+--			 'actors with elements inside their boundary', 'NAWEI', 
+--			 0.0.asDouble(), null, 'self.NAWEI()', istarElement, container);
+			 
+
+
+			 
+			 
+--createMetric('Number of Contribution Links from a Goal ', 'number of ' +
+--			 'contribution links comming from a goal', 'NCLG', 
+--			 0.0.asDouble(), null, 'self.NCLG()', goalElement, container);
+			 
+--createMetric('Number of Decompositions Links of a Goal ', 'number of ' +
+--			 'decompositions links of a goal', 'NDLG', 
+--			 0.0.asDouble(), null, 'self.NDLG()', goalElement, container);
+			 
+--createMetric('Number of Links of a Goal ', 'total number of links of a goal',
+--			 'NLG', 0.0.asDouble(), null, 'self.NLG()', goalElement, container);	 
+			 
+			 
+--createMetric('Number of Contribution Links from a Softgoal ', 'number of ' +
+--			 'contribution links comming from softgoal', 'NCLS', 
+--			 0.0.asDouble(), null, 'self.NCLS()', softgoalElement, container);
+			 
+--createMetric('Number of Decompositions Links of a Softgoal ', 'number of ' +
+--			 'decompositions links of a softgoal', 'NDLS', 
+--			 0.0.asDouble(), null, 'self.NDLS()', softgoalElement, container);
+			 
+--createMetric('Number of Links of a Softgoal ', 'total number of links of a ' +
+--			 'softgoal', 'NLS', 0.0.asDouble(), null, 'self.NLS()', 
+--			 softgoalElement, container);
+			 
+			 
+--createMetric('Number of Contribution Links from a Task ', 'number of ' +
+--			 'contribution links comming from a task', 'NCLT', 
+--			 0.0.asDouble(), null, 'self.NCLT()', taskElement, container);
+			 
+--createMetric('Number of Decompositions Links of a Task ', 'number of ' +
+--			 'decompositions links of a task', 'NDLT', 
+--			 0.0.asDouble(), null, 'self.NDLT()', taskElement, container);
+			 
+--createMetric('Number of Links of a Task ', 'total number of links of a task',
+--			 'NLT', 0.0.asDouble(), null, 'self.NLT()', taskElement, container);
+			 
+			 
+--createMetric('Number of Contribution Links from a Resource ', 'number of ' +
+--			 'contribution links comming from a resource', 'NCLR', 
+--			 0.0.asDouble(), null, 'self.NCLR()', resourceElement, container);
+			 
+--createMetric('Number of Decompositions Links of a Resource ', 'number of ' +
+--			 'decompositions links of a resource', 'NDLR', 
+--			 0.0.asDouble(), null, 'self.NDLR()', resourceElement, container);
+			 
+--createMetric('Number of Links of a Resource ', 'total number of links of a ' + 
+--		     'resource', 'NLR', 0.0.asDouble(), null, 'self.NLR()', 
+--		     resourceElement, container);
+			 
+			 
+--createMetric('Number of Contribution Links from a Belief ', 'number of ' +
+--			 'contribution links comming from a belief', 'NCLB', 
+--			 0.0.asDouble(), null, 'self.NCLB()', beliefElement, container);
+			 
+--createMetric('Number of Decompositions Links of a Belief ', 'number of ' +
+--			 'decompositions links of a belief', 'NDLB', 
+--			 0.0.asDouble(), null, 'self.NDLB()', beliefElement, container);
+			 
+--createMetric('Number of Links of a Belief ', 'total number of links of a ' + 
+--		     'belief', 'NLB', 0.0.asDouble(), null, 'self.NLB()', 
+--		     beliefElement, container);
+		     
+		     
+		     
+-- Completude - Quest�o 5
+--createMetric('Number of Unconnected Elements Inside Actors Boundaries ', 
+--			 'total number of unconnected elements inside all actors ' + 
+--			 'boundaries in the model', 'NUEIAB', 0.0.asDouble(), null, 
+--			 'self.NUEIAB()', istarElement, container);
+			 
+--createMetric('Number of Unconnected Goals Inside', 'number of unconnected ' +
+--			 'goals inside THIS actor boundary', 'NUGI', 0.0.asDouble(), null, 
+--			 'self.NUGI()', actorElement, container);
+			 
+--createMetric('Number of Unconnected Softgoals Inside', 'number of ' +
+--			 'unconnected softgoals inside THIS actor boundary', 'NUSI',
+--			 0.0.asDouble(), null, 'self.NUSI()', actorElement, container);
+			 
+--createMetric('Number of Unconnected Tasks Inside', 'number of unconnected ' +
+--			 'tasks inside THIS actor boundary', 'NUTI', 0.0.asDouble(), null, 
+--			 'self.NUTI()', actorElement, container);
+			 
+--createMetric('Number of Unconnected Resources Inside', 'number of ' +
+--			 'unconnected resources inside THIS actor boundary', 'NURI',
+--			 0.0.asDouble(), null, 'self.NURI()', actorElement, container);
+			 
+--createMetric('Number of Unconnected Beliefs Inside', 'number of ' +
+--			 'unconnected beliefs inside THIS actor boundary', 'NUBI',
+--			 0.0.asDouble(), null, 'self.NUBI()', actorElement, container);
+			 
+--createMetric('Number of Unconnected Elements Inside', 'total number of ' +
+--			 'unconnected elements inside THIS actor boundary', 'NUEI',
+--			 0.0.asDouble(), null, 'self.NUEI()', actorElement, container);
+			 
+--createMetric('Percentage of Unconnected Elements Inside', 'percentage of ' + 
+-- 			 'unconneted elements inside THIS actor boundaries', 'PUEI', 
+-- 			 0.0.asDouble(), null, 'self.PUEI()', actorElement, container);
+ 			 
+--createMetric('Number of Actors With Unconnected Elements Inside', 'number ' +
+--			 'of actors with unconnected elements inside its boundary', 
+--			 'NAWUEI', 0.0.asDouble(), null, 'self.NAWUEI()', istarElement, 
+--			 container);
+			 
+			
+			
+			 
+-- Completude - Questão 6
+
+
+--createMetric('Number of Actors With Decompositions', 'number of actors with' +
+--			 'with decomposition links', 'NAWD', 0.0.asDouble(), null, 
+--			 'self.NAWD()', istarElement, container);
+			 
+			 
+-- Completude - Questão 7
+--createMetric('Number of Incoming ISA', 'number of incoming ISA A associations',
+--			 'NIISA', 0.0.asDouble(), null, 'self.NIISA()', actorElement,
+--			 container);
+			 
+
+
+
+var mapping := GmfMap!Mapping.all.first();
+mapping.metrics = container;

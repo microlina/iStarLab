@@ -1,0 +1,7 @@
+-- create a point to the polyline of the decomposition links
+operation createPoint(x:Integer, y:Integer) : GmfGraph!Point {
+	var point : new GmfGraph!Point;
+	point.x := x;
+	point.y := y;
+	return point;
+}

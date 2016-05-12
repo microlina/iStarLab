@@ -1,0 +1,7 @@
+# Tracing options for the iStarPrototype.diagram plug-in
+
+# Common issues
+iStarPrototype.diagram/debug=false
+
+# Visual IDs
+iStarPrototype.diagram/debug/visualID=false

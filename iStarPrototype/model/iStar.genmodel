@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="" modelDirectory="/iStarPrototype/src" modelPluginID="iStarPrototype"
+    modelName="Istar" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false">
+  <foreignModel>iStar.emf</foreignModel>
+  <genPackages prefix="Istar" disposableProviderFactory="true" ecorePackage="iStar.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="iStar.ecore#//DependencyStrength">
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//DependencyStrength/commited"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//DependencyStrength/open"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//DependencyStrength/critical"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="iStar.ecore#//NFR">
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/unknown"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/functionalSuitability"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/performanceEfficiency"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/compatibility"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/usability"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/reliability"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/security"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/maintainability"/>
+      <genEnumLiterals ecoreEnumLiteral="iStar.ecore#//NFR/portability"/>
+    </genEnums>
+    <genClasses ecoreClass="iStar.ecore#//ISTAR">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference iStar.ecore#//ISTAR/hasNode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//ISTAR/modelName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference iStar.ecore#//ISTAR/hasRelationship"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NAct"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NElem"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEOAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MinNEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MaxNEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/AvgNEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NGIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NDAG"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MinNDAG"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MaxNDAG"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/AvgNDAG"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NGWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NSIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NDAS"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MinNDAS"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MaxNDAS"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/AvgNDAS"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NSWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NTIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NDAT"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MinNDAT"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/MaxNDAT"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/AvgNDAT"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NTWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NIDA"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NODA"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEIActB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEIAgentB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEIRoleB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NEIPosB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NActors"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NAgents"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NRoles"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NPos"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PSAct"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PGWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PSWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PTWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NAWEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PAWEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NUEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PUEIAB"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NAWUEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PAWUEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PAWOUEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NDA"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PIDA"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PODA"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/NAWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PAWD"/>
+      <genOperations ecoreOperation="iStar.ecore#//ISTAR/PAWOD"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Node/nodeName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Node/nodeDependency"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Node/secondNodeDependency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Node/nodeNFR"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Relationship">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Relationship/relationshipName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Relationship/source"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Relationship/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//Relationship/relationshipNFR"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="iStar.ecore#//Actors">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference iStar.ecore#//Actors/hasElement"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Actor">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Actor/actorISA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Actor/secondActorISA"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Actor/actorIsPartOf"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Actor/secondActorIsPartOf"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NDGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NGWDI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MinNDGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MaxNDGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/AvgNDGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NDSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NSWDI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MinNDSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MaxNDSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/AvgNDSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NDTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MinNDTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/MaxNDTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/AvgNDTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NTWDI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NUGI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NUSI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NUTI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NURI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NUBI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NUEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/PUEI"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NID"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NOD"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/ND"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/PID"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/POD"/>
+      <genOperations ecoreOperation="iStar.ecore#//Actor/NIISA"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Agent">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Agent/agentPlays"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Agent/agentOccupies"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Agent/agentINS"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Agent/secondAgentINS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Agent/NEIA"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Position">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Position/positionCovers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Position/positionOccupies"/>
+      <genOperations ecoreOperation="iStar.ecore#//Position/NEIP"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Role/rolePlays"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Role/roleCovers"/>
+      <genOperations ecoreOperation="iStar.ecore#//Role/NEIR"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="iStar.ecore#//Element">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Element/elementContribution"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Element/elementDecomposition"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Goal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Goal/goalMeansEnd"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NDG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NCLG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NDLG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NLG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NIDG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NODG"/>
+      <genOperations ecoreOperation="iStar.ecore#//Goal/NDepG"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Softgoal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Softgoal/softgoalContribution"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NDS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NCLS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NDLS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NLS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NIDS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NODS"/>
+      <genOperations ecoreOperation="iStar.ecore#//Softgoal/NDepS"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Task">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Task/taskMeansEnd"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Task/taskDecomposition"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NDT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NCLT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NDLT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NLT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NIDT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NODT"/>
+      <genOperations ecoreOperation="iStar.ecore#//Task/NDepT"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Resource">
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NCLR"/>
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NDLR"/>
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NLR"/>
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NIDR"/>
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NODR"/>
+      <genOperations ecoreOperation="iStar.ecore#//Resource/NDepR"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Belief">
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NCLB"/>
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NDLB"/>
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NLB"/>
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NIDB"/>
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NODB"/>
+      <genOperations ecoreOperation="iStar.ecore#//Belief/NDepB"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="iStar.ecore#//Association"/>
+    <genClasses ecoreClass="iStar.ecore#//ISA">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//ISA/ISAactor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//ISA/ISAsecondActor"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//IsPartOf">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//IsPartOf/isPartOfActor"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//IsPartOf/isPartOfSecondActor"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Plays">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Plays/playsRole"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Plays/playsAgent"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Covers">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Covers/coversRole"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Covers/coversPosition"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Occupies">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Occupies/occupiesPosition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//Occupies/occupiesAgent"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//INS">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//INS/INSagent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//INS/INSsecondAgent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="iStar.ecore#//ContributionLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//ContributionLink/contributionElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//ContributionLink/contributionSoftgoal"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//Make"/>
+    <genClasses ecoreClass="iStar.ecore#//Break"/>
+    <genClasses ecoreClass="iStar.ecore#//Help"/>
+    <genClasses ecoreClass="iStar.ecore#//Hurt"/>
+    <genClasses ecoreClass="iStar.ecore#//SomePlus"/>
+    <genClasses ecoreClass="iStar.ecore#//SomeMinus"/>
+    <genClasses ecoreClass="iStar.ecore#//And"/>
+    <genClasses ecoreClass="iStar.ecore#//Or"/>
+    <genClasses ecoreClass="iStar.ecore#//Unknown"/>
+    <genClasses image="false" ecoreClass="iStar.ecore#//Decomposition"/>
+    <genClasses ecoreClass="iStar.ecore#//MeansEnd">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//MeansEnd/meansEndTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//MeansEnd/meansEndGoal"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//DecompositionLink">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//DecompositionLink/decompositionTask"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//DecompositionLink/decompositionElement"/>
+    </genClasses>
+    <genClasses ecoreClass="iStar.ecore#//DependencyLink">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//DependencyLink/strength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute iStar.ecore#//DependencyLink/dependencyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//DependencyLink/dependencyNode"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference iStar.ecore#//DependencyLink/dependencySecondNode"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
