@@ -36,4 +36,5 @@ ___
   
 Second Eclipse:
 
-1. File -> New ->
+1. File -> New -> Project -> General -> Project
+2. New -> Example -> Istar Diagram
