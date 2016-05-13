@@ -25,3 +25,4 @@ url="http://dx.doi.org/10.1007/978-3-319-07881-6_7"
 ___
 
 ### Setup guide
+1. Install [Eclipse Epsilon 1.2](http://www.eclipse.org/epsilon/download/?version=1.2)
