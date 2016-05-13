@@ -3,7 +3,6 @@
 The iStarLab tool provides an editor enriched with a set of metrics, which are formally specified to measure and analyse complexity and completeness of goal models, in particular, social goal models built with i*. 
 
 ---
-### Ownership
 This project was developed by Catarina Gralha as part of her MSc dissertation, conducted at the Informatics Department of Faculdade de Ciências e Tecnolgia, Univerisdade NOVA de Lisboa (FCT/UNL), Portugal.
 
 The tool and its usage are described in the paper:
