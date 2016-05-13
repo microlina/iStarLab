@@ -31,4 +31,8 @@ ___
   * File -> Import -> General -> Existing Projects into Workspace
   * Select root directory -> Browse -> iStarLab
 3. Context menu of iStarPrototype folder
-  * Run As -> Eclipse Application (this will open another Eclipse)
+  * Run As -> Eclipse Application (this will open (this will open **another Eclipse**)
+
+Second Eclipse:
+1. File -> New -> Project -> General -> Project
+2. New -> Example -> Istar Diagram
