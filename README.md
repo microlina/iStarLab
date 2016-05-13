@@ -1,5 +1,4 @@
-# iStarLab
-iStarLab, an i* modelling tool [prototype]
+# iStarLab [prototype]
 
 The iStarLab tool provides an editor enriched with a set of metrics, which are formally specified to measure and analyse complexity and completeness of goal models, in particular, social goal models built with i*. 
 
