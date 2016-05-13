@@ -27,3 +27,8 @@ ___
 
 ### Setup guide
 1. Install [Eclipse Epsilon 1.2](http://www.eclipse.org/epsilon/download/?version=1.2)
+2. Import the project into workspace
+  * File -> Import -> General -> Existing Projects into Workspace
+  * Select root directory -> Browse -> iStarLab
+3. Context menu of iStarPrototype folder
+  * Run As -> Eclipse Application (this will open another Eclipse)
