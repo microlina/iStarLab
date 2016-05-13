@@ -7,3 +7,17 @@ This project was developed by Catarina Gralha as part of her MSc dissertation, c
 The tool and its usage are described in the paper:
 
 *Gralha, C., Goulão, M., & Araújo, J. (2014, June). Identifying Modularity Improvement Opportunities in Goal-oriented Requirements Models. In Advanced Information Systems Engineering (pp. 91-104). Springer Berlin Heidelberg.*
+
+``` 
+@inproceedings{Gralha2014,
+author="Gralha, Catarina and Goul{\~a}o, Miguel and Ara{\'u}jo, Jo{\~a}o",
+title="Identifying Modularity Improvement Opportunities in Goal-Oriented Requirements Models",
+booktitle="Advanced Information Systems Engineering",
+year="2014",
+publisher="Springer",
+pages="91--104",
+isbn="978-3-319-07881-6",
+doi="10.1007/978-3-319-07881-6_7",
+url="http://dx.doi.org/10.1007/978-3-319-07881-6_7"
+}
+```
