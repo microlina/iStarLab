@@ -5,7 +5,7 @@ The iStarLab tool provides an editor enriched with a set of metrics, which are f
 ---
 This project was developed by Catarina Gralha as part of her MSc dissertation, conducted at the Informatics Department of Faculdade de Ciências e Tecnolgia, Univerisdade NOVA de Lisboa (FCT/UNL), Portugal.
 
-The tool and its usage are described in the paper:
+The tool and its usage are described in the papers:
 
 *Gralha, C., Goulão, M., & Araújo, J. (2014, June). Identifying Modularity Improvement Opportunities in Goal-oriented Requirements Models. In Advanced Information Systems Engineering (pp. 91-104). Springer Berlin Heidelberg.*
 
@@ -20,6 +20,28 @@ pages="91--104",
 isbn="978-3-319-07881-6",
 doi="10.1007/978-3-319-07881-6_7",
 url="http://dx.doi.org/10.1007/978-3-319-07881-6_7"
+}
+```
+
+*Gralha, C., Goulão, M., & Araújo, J. (2015, April). Metrics for measuring complexity and completeness for social goal models. Information Systems Vol. 53 (pp. 346-362). Elsevier*
+
+``` 
+@article{Gralha2015346,
+title = "Metrics for measuring complexity and completeness for social goal models ",
+journal = "Information Systems ",
+volume = "53",
+number = "",
+pages = "346 - 362",
+year = "2015",
+note = "",
+issn = "0306-4379",
+doi = "http://dx.doi.org/10.1016/j.is.2015.03.006",
+url = "http://www.sciencedirect.com/science/article/pii/S0306437915000666",
+author = "Catarina Gralha and Jo{\~a}o Ara{\'u}jo and Miguel Goul{\~a}o",
+keywords = "Goal-oriented requirements models",
+keywords = "i⁎",
+keywords = "Software metrics",
+keywords = "Model assessment "
 }
 ```
 
