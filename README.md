@@ -23,7 +23,7 @@ url="http://dx.doi.org/10.1007/978-3-319-07881-6_7"
 }
 ```
 
-*Gralha, C., Goulão, M., & Araújo, J. (2015, April). Metrics for measuring complexity and completeness for social goal models. Information Systems Vol. 53 (pp. 346-362). Elsevier*
+*Gralha, C., Araújo, J. & Goulão, M. (2015, April). Metrics for measuring complexity and completeness for social goal models. Information Systems Vol. 53 (pp. 346-362). Elsevier*
 
 ``` 
 @article{Gralha2015346,
